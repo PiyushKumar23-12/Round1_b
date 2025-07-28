@@ -1,119 +1,171 @@
-# Persona-Driven Document Intelligence
+Here’s a **complete, production-quality README** in Markdown for your **Persona-Driven Document Intelligence** system.
+
+---
+
+# 🧠 Persona-Driven Document Intelligence
 
 *Challenge Theme: "Connect What Matters — For the User Who Matters"*
 
-## Overview
+---
 
-This system serves as an intelligent document analyst that reads a set of PDFs and extracts, ranks, and summarizes the most relevant sections based on:
+## 📘 Introduction
 
-- A defined persona (user role)
-- Their job-to-be-done (task)
+**Persona-Driven Document Intelligence** is a smart system that analyzes collections of PDFs to extract, rank, and summarize content relevant to a **specific user persona** and their **goal or task**. It’s designed to work across a wide variety of document types and roles — from research and business to travel and planning.
 
-It's built to generalize across diverse document types, user roles, and tasks — from research literature reviews to business analysis and travel planning.
+---
 
-## Problem Statement
+## 📚 Table of Contents
 
-*Given:*
-- A collection of PDFs (3-10 documents)
-- A persona description (e.g., "Travel Planner", "PhD Researcher")
-- A task the persona wants to accomplish
+* [Introduction](#-introduction)
+* [Problem Statement](#-problem-statement)
+* [How It Works](#-how-it-works)
+* [Directory Structure](#-directory-structure)
+* [Installation](#-installation)
+* [Usage](#-usage)
+* [Input Format](#-input-format)
+* [Output Format](#-output-format)
+* [Technologies Used](#-technologies-used)
+* [Examples](#-examples)
+* [Troubleshooting](#-troubleshooting)
+* [Contributors](#-contributors)
+* [License](#-license)
 
-*The system must:*
-- Understand the persona and their intent
-- Extract meaningful sections from PDFs
-- Rank them by relevance
-- Summarize them into concise, task-focused insights
+---
 
-## Directory Structure
+## ❓ Problem Statement
 
+**Given:**
 
-<pre> ```
-  
-text project/ ├── app/ │ ├── config.py # Configuration constants │ ├── main.py # Main execution logic │ ├── pdf_processor.py # Extracts text and titles from PDFs │ ├── embedding_utils.py # Loads transformer model and generates embeddings │ ├── ranking.py # Ranks document sections using cosine similarity │ └── output_builder.py # Builds refined summaries and final JSON output ├── collection/ │ ├── input.json # Persona and task input │ ├── output.json # Final generated output │ └── pdfs/ # Folder containing all input PDFs │ ├── ... # e.g., South of France - Cities.pdf ├── requirements.txt # Required Python packages └── Dockerfile # For containerized execution 
-  
-``` </pre>
+* A set of PDFs (3–10 documents)
+* A user **persona** (e.g., "Travel Planner", "PhD Researcher")
+* A **job-to-be-done** (e.g., "Plan a 4-day trip for a group of friends")
 
+**The system must:**
 
-## How It Works
+1. Understand the persona and intent.
+2. Extract relevant document sections.
+3. Rank them based on importance.
+4. Summarize them into concise, focused insights.
 
-### 1. Input Parsing
-The input.json file contains:
-- Document metadata
-- Persona (role)
-- Job-to-be-done (task)
+---
 
-### 2. PDF Section Extraction
-pdf_processor.py loads each PDF page-by-page using PyMuPDF.
+## ⚙️ How It Works
 
-*Extracts:*
-- Clean text from each page
-- Probable section titles (via font-size + position heuristics)
+1. **Input Parsing**
 
-### 3. Semantic Embedding
-Loads a Sentence-BERT model (all-MiniLM-L6-v2) via sentence-transformers.
+   * Reads `input.json` for persona and task details.
+2. **PDF Section Extraction**
 
-*Encodes:*
-- Each page/section's text → vector
-- Combined persona+task → query vector
+   * Loads each PDF with `PyMuPDF`, page by page.
+   * Extracts text and likely section titles.
+3. **Semantic Embedding**
 
-### 4. Section Ranking
-Uses cosine similarity between each section and the query vector.
+   * Converts persona+task and document sections into vectors using `Sentence-BERT (MiniLM)`.
+4. **Section Ranking**
 
-Assigns a rank (1 = most relevant) to each section (ranking.py).
+   * Computes cosine similarity to rank document sections by relevance.
+5. **Summarization**
 
-### 5. Focused Summarization
-output_builder.py splits the top sections into sentences.
+   * Selects top-N sentences from top-ranked sections.
+6. **Structured Output**
 
-Selects the top-N most relevant sentences (by cosine similarity) to form a refined summary for each section.
+   * Writes insights and rankings into `output.json`.
 
-### 6. Structured Output
-Outputs a collection/output.json file containing:
-- Metadata
-- Ranked section list
-- Refined summaries (with page numbers and document names)
+---
 
-## Sample Input
+## 📁 Directory Structure
 
-json
-"persona": {
-  "role": "Travel Planner"
-},
-"job_to_be_done": {
-  "task": "Plan a trip of 4 days for a group of 10 college friends."
-}
+```plaintext
+persona-doc-intelligence/
+├── app/
+│   ├── config.py               # Configuration constants
+│   ├── main.py                 # Main execution logic
+│   ├── pdf_processor.py        # Extracts text and titles from PDFs
+│   ├── embedding_utils.py      # Loads transformer model and generates embeddings
+│   ├── ranking.py              # Ranks document sections using cosine similarity
+│   └── output_builder.py       # Builds refined summaries and final JSON output
+├── collection/
+│   ├── input.json              # Persona and task input
+│   ├── output.json             # Final generated output
+│   └── pdfs/                   # Input PDF documents
+│       ├── South of France - Cities.pdf
+│       └── ...
+├── requirements.txt            # Required Python packages
+└── Dockerfile                  # For containerized execution
+```
 
+---
 
-## Technologies Used
+## 💻 Installation
 
-| Component | Technology |
-|-----------|------------|
-| PDF Processing | PyMuPDF |
-| Embeddings | SentenceTransformers (MiniLM) |
-| Ranking | Cosine Similarity (NumPy) |
-| Summarization | Sentence-level embedding comparison |
-| Deployment | Docker (multi-stage) |
+### Option 1: Docker (Recommended)
 
-## Run with Docker
-
-bash
-# Build the image
+```bash
+# Build the Docker image
 docker build -t doc-intelligence .
 
-# Run the container
+# Run the container with mounted volume
 docker run --rm -v $(pwd)/collection:/app/collection doc-intelligence
+```
 
+### Option 2: Manual Python Setup
 
-*Ensure your collection folder contains:*
-- All PDFs under collection/pdfs/
-- A properly formatted input.json
+```bash
+# Clone the repo
+git clone https://github.com/your-repo/persona-doc-intelligence.git
+cd persona-doc-intelligence
 
-## Output Format
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate
 
-The output.json contains:
+# Install dependencies
+pip install -r requirements.txt
+```
 
-json
+---
+
+## 📥 Input Format
+
+### `collection/input.json`
+
+```json
 {
-  "metadata": { ... },
+  "persona": {
+    "role": "Travel Planner"
+  },
+  "job_to_be_done": {
+    "task": "Plan a trip of 4 days for a group of 10 college friends."
+  },
+  "document_metadata": [
+    {
+      "filename": "South of France - Cities.pdf",
+      "description": "Guide covering key cities in Southern France including Nice, Marseille, and Avignon."
+    },
+    {
+      "filename": "French Cuisine Highlights.pdf",
+      "description": "Details about must-try foods and local specialties in different French regions."
+    }
+  ]
+}
+```
+
+📌 Make sure all referenced files are in `collection/pdfs/`.
+
+---
+
+## 📤 Output Format
+
+### `collection/output.json`
+
+```json
+{
+  "metadata": {
+    "persona_role": "Travel Planner",
+    "task": "Plan a trip of 4 days for a group of 10 college friends",
+    "processed_on": "2025-07-28",
+    "documents_count": 2
+  },
   "extracted_sections": [
     {
       "document": "South of France - Cities.pdf",
@@ -121,14 +173,77 @@ json
       "importance_rank": 1,
       "page_number": 3
     },
-    ...
+    {
+      "document": "French Cuisine Highlights.pdf",
+      "section_title": "Street Foods in Provence",
+      "importance_rank": 2,
+      "page_number": 5
+    }
   ],
   "subsection_analysis": [
     {
       "document": "South of France - Cities.pdf",
-      "refined_text": "Nice is known for its ...",
+      "refined_text": "Nice offers beachside charm and group-friendly nightlife. Marseille provides cultural experiences ideal for day trips.",
       "page_number": 3
     },
-    ...
+    {
+      "document": "French Cuisine Highlights.pdf",
+      "refined_text": "Must-try foods include Socca in Nice and Bouillabaisse in Marseille—great for shared meals.",
+      "page_number": 5
+    }
   ]
 }
+```
+
+---
+
+## 🧰 Technologies Used
+
+| Component      | Technology                          |
+| -------------- | ----------------------------------- |
+| PDF Processing | PyMuPDF                             |
+| Embeddings     | SentenceTransformers (MiniLM)       |
+| Ranking Logic  | Cosine Similarity (NumPy)           |
+| Summarization  | Sentence-level embedding comparison |
+| Deployment     | Docker (Multi-stage build)          |
+
+---
+
+## 💡 Example Use Cases
+
+* 👨‍🎓 A **PhD student** filtering 50 research papers by a research question.
+* 🧳 A **travel agent** planning a customized itinerary from regional guides.
+* 🧑‍💼 A **market analyst** scanning industry reports for business strategy insights.
+
+---
+
+## 🛠️ Troubleshooting
+
+| Problem                     | Solution                                                                   |
+| --------------------------- | -------------------------------------------------------------------------- |
+| `ModuleNotFoundError: fitz` | Install PyMuPDF: `pip install pymupdf`                                     |
+| PDFs not found              | Ensure files are under `collection/pdfs/` and filenames match `input.json` |
+| Empty output.json           | Check if input persona and task are descriptive enough                     |
+
+---
+
+## 👥 Contributors
+
+* **Your Name** – System architecture and engineering
+* **Team/Org Name** – (Optional)
+
+> Want to contribute? Submit a PR or open an issue!
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See `LICENSE` file for details.
+
+---
+
+Let me know if you want:
+
+* A filled-out `requirements.txt`
+* Sample PDF for testing
+* GitHub-ready version (with badges or CI/CD integration)
