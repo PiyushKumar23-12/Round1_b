@@ -1,10 +1,22 @@
-# Persona-Driven Document Intelligence
+---
 
-## Overview
-Analyzes a folder of PDF documents and extracts, ranks, and summarizes the most relevant sections for a specific persona and job-to-be-done.
+## 💻 How to Use
 
-## Usage
+1. Clone the repository:
+ 
+2. git clone https://github.com/PiyushKumar23-12/Round1_b
+   
+3. Put your PDFs into the collection/pdfs/ folder.
+   
+4. Place your input.json in collection folder. 
 
-1. Place your PDFs in a folder, e.g., `pdfs/`
-2. Install requirements:
+6. Run Docker Desktop/Engine.
+
+7. Build and run the Docker container using the below commands in PowerShell:
+
+   bash
+   ```
+   docker build -t round1b .;
+   docker run --rm -it -v "${PWD}\collection:/app/collection" round1b
+   ```
 
