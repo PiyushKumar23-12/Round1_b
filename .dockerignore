@@ -1,7 +1,43 @@
+# Python cache and compiled files
 __pycache__/
 *.pyc
-.git/
-tests/
-docs/
-*.md
-*.env
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Torch / HuggingFace cache
+~/.cache/
+.cache/
+*.pt
+*.pth
+*.pkl
+*.onnx
+
+# Data files
+*.pdf
+*.csv
+*.zip
+*.tar.gz
+*.log
+
+# Folders
+models/
+outputs/
+data/
+datasets/
+
+# Node or other folders
+node_modules/
+
+
+*.log
+.env
+.env.*
+node_modules/
+venv/
+.env/
+*.sqlite3
