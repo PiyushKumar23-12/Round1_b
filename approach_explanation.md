@@ -1,6 +1,4 @@
-Here’s a **complete, production-quality README** in Markdown for your **Persona-Driven Document Intelligence** system.
 
----
 
 # 🧠 Persona-Driven Document Intelligence
 
