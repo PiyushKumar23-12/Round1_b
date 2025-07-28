@@ -1,6 +1,6 @@
 ---
 
-# 🧠 Persona-Driven Document Intelligence
+## 🧠 Persona-Driven Document Intelligence
 
 *Challenge Theme: "Connect What Matters — For the User Who Matters"*
 
