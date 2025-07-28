@@ -193,36 +193,3 @@ pip install -r requirements.txt
 * 👨‍🎓 A **PhD student** filtering 50 research papers by a research question.
 * 🧳 A **travel agent** planning a customized itinerary from regional guides.
 * 🧑‍💼 A **market analyst** scanning industry reports for business strategy insights.
-
----
-
-## 🛠️ Troubleshooting
-
-| Problem                     | Solution                                                                   |
-| --------------------------- | -------------------------------------------------------------------------- |
-| `ModuleNotFoundError: fitz` | Install PyMuPDF: `pip install pymupdf`                                     |
-| PDFs not found              | Ensure files are under `collection/pdfs/` and filenames match `input.json` |
-| Empty output.json           | Check if input persona and task are descriptive enough                     |
-
----
-
-## 👥 Contributors
-
-* **Your Name** – System architecture and engineering
-* **Team/Org Name** – (Optional)
-
-> Want to contribute? Submit a PR or open an issue!
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License. See `LICENSE` file for details.
-
----
-
-Let me know if you want:
-
-* A filled-out `requirements.txt`
-* Sample PDF for testing
-* GitHub-ready version (with badges or CI/CD integration)
