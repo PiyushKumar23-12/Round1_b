@@ -27,7 +27,11 @@ It's built to generalize across diverse document types, user roles, and tasks �
 ## Directory Structure
 
 
-<pre> ```text project/ ├── app/ │ ├── config.py # Configuration constants │ ├── main.py # Main execution logic │ ├── pdf_processor.py # Extracts text and titles from PDFs │ ├── embedding_utils.py # Loads transformer model and generates embeddings │ ├── ranking.py # Ranks document sections using cosine similarity │ └── output_builder.py # Builds refined summaries and final JSON output ├── collection/ │ ├── input.json # Persona and task input │ ├── output.json # Final generated output │ └── pdfs/ # Folder containing all input PDFs │ ├── ... # e.g., South of France - Cities.pdf ├── requirements.txt # Required Python packages └── Dockerfile # For containerized execution ``` </pre>
+<pre> ```
+  
+text project/ ├── app/ │ ├── config.py # Configuration constants │ ├── main.py # Main execution logic │ ├── pdf_processor.py # Extracts text and titles from PDFs │ ├── embedding_utils.py # Loads transformer model and generates embeddings │ ├── ranking.py # Ranks document sections using cosine similarity │ └── output_builder.py # Builds refined summaries and final JSON output ├── collection/ │ ├── input.json # Persona and task input │ ├── output.json # Final generated output │ └── pdfs/ # Folder containing all input PDFs │ ├── ... # e.g., South of France - Cities.pdf ├── requirements.txt # Required Python packages └── Dockerfile # For containerized execution 
+  
+``` </pre>
 
 
 ## How It Works
