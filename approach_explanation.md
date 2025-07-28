@@ -29,8 +29,8 @@ It's built to generalize across diverse document types, user roles, and tasks �
 
 project/
 ├── app/
-│   ├── config.py               # Configuration constants
-│   ├── main.py                 # Main execution logic
+│   ├── config.py                Configuration constants
+│   ├── main.py                  Main execution logic
 │   ├── pdf_processor.py        # Extracts text and titles from PDFs
 │   ├── embedding_utils.py      # Loads transformer model and generates embeddings
 │   ├── ranking.py              # Ranks document sections using cosine similarity
