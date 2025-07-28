@@ -1,5 +1,3 @@
-Here’s a **complete, production-quality README** in Markdown for your **Persona-Driven Document Intelligence** system.
-
 ---
 
 # 🧠 Persona-Driven Document Intelligence
@@ -11,26 +9,6 @@ Here’s a **complete, production-quality README** in Markdown for your **Person
 ## 📘 Introduction
 
 **Persona-Driven Document Intelligence** is a smart system that analyzes collections of PDFs to extract, rank, and summarize content relevant to a **specific user persona** and their **goal or task**. It’s designed to work across a wide variety of document types and roles — from research and business to travel and planning.
-
----
-
-## 📚 Table of Contents
-
-* [Introduction](#-introduction)
-* [Problem Statement](#-problem-statement)
-* [How It Works](#-how-it-works)
-* [Directory Structure](#-directory-structure)
-* [Installation](#-installation)
-* [Usage](#-usage)
-* [Input Format](#-input-format)
-* [Output Format](#-output-format)
-* [Technologies Used](#-technologies-used)
-* [Examples](#-examples)
-* [Troubleshooting](#-troubleshooting)
-* [Contributors](#-contributors)
-* [License](#-license)
-
----
 
 ## ❓ Problem Statement
 
